@@ -1,2 +1,4 @@
 .env
-node_moduals
+node_modules
+.env.sample
+pakage-lock.json
