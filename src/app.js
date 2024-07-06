@@ -1,5 +1,5 @@
 import express from "express";
-import { router as todoRouter } from "./routs/todos/routs.js";
+import { router as tasksRouter } from "./modules/tasks/routes.js";
 
 const app = express();
 app.use(express.json());
@@ -10,7 +10,7 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.use(todoRouter);
+app.use(tasksRouter);
 
 app.listen(serverPort, () => {
   console.log(`server is running on port ${serverPort}`);
