@@ -7,7 +7,7 @@ async function getTasksByUserId(id) {
 }
 
 async function getTaskById(id) {
-  const queryContext = "select * from public.todos where id=$1";
+  const queryContext = "select * from public.tasks where id=$1";
   const result = await query(queryContext, [id]);
   return result.rows;
 }
@@ -48,6 +48,7 @@ async function getTaskById(id) {
 
 export {
   getTasksByUserId,
+  getTaskById,
   //   getTodoById,
   //   getTodos,
   //   deleteTodo,
