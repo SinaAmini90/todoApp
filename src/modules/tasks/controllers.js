@@ -3,6 +3,7 @@ import {
   getTaskByIdService,
   createTaskService,
   deleteTaskService,
+  updateTaskService,
 } from "../../services/tasks/api.js";
 const getTaskByUserIdController = async (req, res, next) => {
   try {
@@ -67,10 +68,46 @@ const createTaskController = async (req, res, next) => {
 const deleteTaskController = async (req, res, next) => {
   try {
     const taskId = req.validated.id; //=req.params.id;
-    await deleteTaskService(taskId);
+    deleteTaskService(taskId);
     res.status(201).json({
       message: "the todo delete successfully from database",
     });
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const updateTaskController = async (req, res, next) => {
+  try {
+    const {
+      id,
+      title,
+      description,
+      priority,
+      reminder,
+      category_id,
+      deadline,
+      completed,
+    } = req.body;
+    // console.log( id, title, description, is_completed );
+    await updateTaskService(
+      id,
+      title,
+      description,
+      priority,
+      reminder,
+      category_id,
+      deadline,
+      completed
+    );
+    res.status(201).json({
+      message: "the todo update successfully in database",
+    });
+    next();
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -83,5 +120,6 @@ export {
   deleteTaskController,
   getTaskByUserIdController,
   getTaskByIdController,
+  updateTaskController,
   createTaskController,
 };

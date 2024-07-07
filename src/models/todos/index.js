@@ -46,16 +46,31 @@ async function deleteTask(id) {
 //   const result = await query(queryContext, []);
 // }
 
-// async function updateTodo(id, title, description, isComplited) {
-//   const queryContext = `UPDATE public.todos SET title =$2,  description =$3, is_completed =$4  WHERE id =$1 RETURNING *; `;
-//   const result = await query(queryContext, [
-//     id,
-//     title,
-//     description,
-//     isComplited,
-//   ]);
-//   return result.rows;
-// }
+async function updateTask(
+  id,
+  title,
+  description,
+  priority,
+  reminder,
+  category_id,
+  deadline,
+  completed
+) {
+  const queryContext = `UPDATE public.tasks
+   SET title =$2,  description =$3, priority=$4,  reminder=$5,  category_id=$6,  deadline=$7,completed =$8 
+   WHERE id =$1 RETURNING *; `;
+  const result = await query(queryContext, [
+    id,
+    title,
+    description,
+    priority,
+    reminder,
+    category_id,
+    deadline,
+    completed,
+  ]);
+  return result.rows;
+}
 
 // async function markAllAsComplite() {
 //   const queryContext = "UPDATE public.todos set is_completed=$1  RETURNING *";
@@ -67,7 +82,7 @@ export {
   getTasksByUserId,
   getTaskById,
   deleteTask,
-  //   updateTodo,
+  updateTask,
   createTask,
   //   deleteAllTodos,
   //   markAllAsComplite,
