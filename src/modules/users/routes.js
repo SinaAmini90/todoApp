@@ -1,39 +1,21 @@
 import express from "express";
-import {
-  getusers,
-  getuserById,
-  createuser,
-  deleteuser,
-  updateuser,
-  markAllAsComplite,
-  deleteAllusers,
-} from "../../model/users/index.js";
+import { getUserByIdController } from "./controllers.js";
+import { userIdValidator } from "./validations.js";
+
 const router = express.Router();
+router.get("/api/user/:id", userIdValidator, getUserByIdController);
 
-router.get("/api/user", async (req, res) => {
-  try {
-    const userList = await getUsers();
-    res.json(userList);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-});
-
-router.get("/api/user/:id", async (req, res) => {
-  try {
-    const userId = req.params.id;
-    const user = await getuserById(userId);
-    res.json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-});
+// router.get("/api/user", async (req, res) => {
+//   try {
+//     const userList = await getUsers();
+//     res.json(userList);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({
+//       message: error.message,
+//     });
+//   }
+// });
 
 router.post("/api/user", async (req, res) => {
   try {

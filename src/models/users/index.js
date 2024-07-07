@@ -1,10 +1,10 @@
 import { query } from "../../core/database/database-handler.js";
 
-async function getUsers() {
-  const queryContext = "select * from public.users";
-  const result = await query(queryContext);
-  return result.rows;
-}
+// async function getUsers() {
+//   const queryContext = "select * from public.users";
+//   const result = await query(queryContext);
+//   return result.rows;
+// }
 
 async function getUserById(id) {
   const queryContext = "select * from public.users where id=$1";
@@ -48,7 +48,7 @@ async function markAllAsComplite() {
 
 export {
   getUserById,
-  getUsers,
+  //   getUsers,
   deleteUser,
   updateUser,
   createUser,
