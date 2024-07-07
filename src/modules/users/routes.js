@@ -1,9 +1,10 @@
 import express from "express";
-import { getUserByIdController } from "./controllers.js";
-import { userIdValidator } from "./validations.js";
+import { createUserController, getUserByIdController } from "./controllers.js";
+import { userIdValidator, userInfoValidator } from "./validations.js";
 
 const router = express.Router();
 router.get("/api/user/:id", userIdValidator, getUserByIdController);
+router.post("/api/user", userInfoValidator, createUserController);
 
 // router.get("/api/user", async (req, res) => {
 //   try {
@@ -16,21 +17,6 @@ router.get("/api/user/:id", userIdValidator, getUserByIdController);
 //     });
 //   }
 // });
-
-router.post("/api/user", async (req, res) => {
-  try {
-    const { title, description } = req.body;
-    await createUser(title, description);
-    res.status(201).json({
-      message: "the user add successfully to database",
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-});
 
 router.delete("/api/user/:id", async (req, res) => {
   try {

@@ -12,10 +12,24 @@ async function getUserById(id) {
   return result.rows;
 }
 
-async function createUser(title, description) {
+async function createUser(
+  username,
+  firstname,
+  lastname,
+  phonenumber,
+  email,
+  password
+) {
   const queryContext =
-    "insert into public.users (title,description) values ($1,$2) RETURNING *";
-  const result = await query(queryContext, [title, description]);
+    "insert into public.users (username, firstname, lastname, phonenumber, email, password) values ($1,$2,$3,$4,$5,$6) RETURNING *";
+  const result = await query(queryContext, [
+    username,
+    firstname,
+    lastname,
+    phonenumber,
+    email,
+    password,
+  ]);
   return result.rows;
 }
 

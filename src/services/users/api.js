@@ -1,7 +1,26 @@
-import { getUserById } from "../../models/users/index.js";
+import { createUser, getUserById } from "../../models/users/index.js";
 
 function getUserByIdService(id) {
   const user = getUserById(id);
   return user;
 }
-export { getUserByIdService };
+
+function createUserService(
+  username,
+  firstname,
+  lastname,
+  phonenumber,
+  email,
+  password
+) {
+  const user = createUser(
+    username,
+    firstname,
+    lastname,
+    phonenumber,
+    email,
+    password
+  );
+  return user;
+}
+export { getUserByIdService, createUserService };
