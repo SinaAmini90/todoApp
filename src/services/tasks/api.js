@@ -2,6 +2,7 @@ import {
   getTasksByUserId,
   getTaskById,
   createTask,
+  deleteTask,
 } from "../../models/todos/index.js";
 
 function getUserTasksService(id) {
@@ -34,4 +35,13 @@ function createTaskService(
   );
   return task;
 }
-export { getUserTasksService, getTaskByIdService, createTaskService };
+
+function deleteTaskService(id) {
+  deleteTask(id);
+}
+export {
+  deleteTaskService,
+  getUserTasksService,
+  getTaskByIdService,
+  createTaskService,
+};

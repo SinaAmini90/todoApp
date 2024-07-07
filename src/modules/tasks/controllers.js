@@ -2,6 +2,7 @@ import {
   getUserTasksService,
   getTaskByIdService,
   createTaskService,
+  deleteTaskService,
 } from "../../services/tasks/api.js";
 const getTaskByUserIdController = async (req, res, next) => {
   try {
@@ -63,7 +64,23 @@ const createTaskController = async (req, res, next) => {
   }
 };
 
+const deleteTaskController = async (req, res, next) => {
+  try {
+    const taskId = req.validated.id; //=req.params.id;
+    await deleteTaskService(taskId);
+    res.status(201).json({
+      message: "the todo delete successfully from database",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 export {
+  deleteTaskController,
   getTaskByUserIdController,
   getTaskByIdController,
   createTaskController,

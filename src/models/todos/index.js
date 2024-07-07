@@ -35,10 +35,11 @@ async function createTask(
   return result.rows;
 }
 
-// async function deleteTodo(id) {
-//   const queryContext = "delete from public.todos where id=$1";
-//   const result = await query(queryContext, [id]);
-// }
+async function deleteTask(id) {
+  const queryContext = "delete from public.tasks where id=$1";
+  const result = await query(queryContext, [id]);
+  return result;
+}
 
 // async function deleteAllTodos() {
 //   const queryContext = "delete from public.todos";
@@ -65,7 +66,7 @@ async function createTask(
 export {
   getTasksByUserId,
   getTaskById,
-  //   deleteTodo,
+  deleteTask,
   //   updateTodo,
   createTask,
   //   deleteAllTodos,
