@@ -2,6 +2,7 @@ import express from "express";
 import {
   getTaskByUserIdController,
   getTaskByIdController,
+  createTaskController,
 } from "./controllers.js";
 import { userIdValidator } from "../users/validations.js";
 import { taskIdValidator } from "./validations.js";
@@ -11,20 +12,7 @@ router.get("/api/tasks/user/:id", userIdValidator, getTaskByUserIdController);
 
 router.get("/api/task/:id", taskIdValidator, getTaskByIdController);
 
-// router.post("/api/todo", async (req, res) => {
-//   try {
-//     const { title, description } = req.body;
-//     await createTodo(title, description);
-//     res.status(201).json({
-//       message: "the todo add successfully to database",
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({
-//       message: error.message,
-//     });
-//   }
-// });
+router.post("/api/task", createTaskController);
 
 // router.delete("/api/todo/:id", async (req, res) => {
 //   try {

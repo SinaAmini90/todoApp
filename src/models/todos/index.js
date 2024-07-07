@@ -12,12 +12,28 @@ async function getTaskById(id) {
   return result.rows;
 }
 
-// async function createTodo(title, description) {
-//   const queryContext =
-//     "insert into public.todos (title,description) values ($1,$2) RETURNING *";
-//   const result = await query(queryContext, [title, description]);
-//   return result.rows;
-// }
+async function createTask(
+  title,
+  description,
+  priority,
+  reminder,
+  category_id,
+  deadline,
+  user_id
+) {
+  const queryContext =
+    "insert into public.tasks (title, description, priority, reminder, category_id, deadline, user_id) values ($1,$2,$3,$4,$5,$6,$7) RETURNING *";
+  const result = await query(queryContext, [
+    title,
+    description,
+    priority,
+    reminder,
+    category_id,
+    deadline,
+    user_id,
+  ]);
+  return result.rows;
+}
 
 // async function deleteTodo(id) {
 //   const queryContext = "delete from public.todos where id=$1";
@@ -49,11 +65,9 @@ async function getTaskById(id) {
 export {
   getTasksByUserId,
   getTaskById,
-  //   getTodoById,
-  //   getTodos,
   //   deleteTodo,
   //   updateTodo,
-  //   createTodo,
+  createTask,
   //   deleteAllTodos,
   //   markAllAsComplite,
 };
