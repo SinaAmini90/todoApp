@@ -2,6 +2,7 @@ import express from "express";
 import { router as tasksRouter } from "./modules/tasks/routes.js";
 import { router as userRouter } from "./modules/users/routes.js";
 import logReqData from "./core/middlewares/logReqData.js";
+import notFoundHandler from "./core/middlewares/errorHandler.js";
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,8 @@ app.get("/test", (req, res) => {
 
 app.use(tasksRouter);
 app.use(userRouter);
+
+app.use(notFoundHandler);
 
 app.listen(serverPort, () => {
   console.log(`server is running on port ${serverPort}`);
