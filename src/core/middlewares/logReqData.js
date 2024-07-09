@@ -12,4 +12,5 @@ export default function logReqData(req, res, next) {
   console.log("Path:", path);
   console.log("Method:", method);
   console.log("IP:", ip);
+  next();
 }
