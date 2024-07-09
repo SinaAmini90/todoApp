@@ -18,7 +18,7 @@ router.post("/api/task", createTaskController);
 
 router.delete("/api/task/:id", taskIdValidator, deleteTaskController); //the task should be users task && the task should be exist
 
-router.put("/api/todo", taskIdValidator, updateTaskController); //the task should be users task && the task should be exist
+router.put("/api/task", updateTaskController); //the task should be users task && the task should be exist
 
 // router.delete("/api/todoall", async (req, res) => {
 //   try {
