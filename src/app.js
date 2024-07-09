@@ -1,11 +1,12 @@
 import express from "express";
 import { router as tasksRouter } from "./modules/tasks/routes.js";
 import { router as userRouter } from "./modules/users/routes.js";
+import logReqData from "./core/middlewares/logReqData.js";
 
 const app = express();
 app.use(express.json());
 const serverPort = 3000;
-app.get("/test", (req, res) => {
+app.get("/test", logReqData, (req, res) => {
   res.json({
     message: "express js app is running",
   });
