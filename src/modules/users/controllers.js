@@ -1,6 +1,7 @@
 import {
   createUserService,
   getUserByIdService,
+  updateUserService,
 } from "../../services/users/api.js";
 
 const getUserByIdController = async (req, res, next) => {
@@ -40,4 +41,29 @@ const createUserController = async (req, res, next) => {
     });
   }
 };
-export { getUserByIdController, createUserController };
+
+const updateUserController = async (req, res, next) => {
+  try {
+    const { id, username, firstname, lastname, phonenumber, email, password } =
+      req.body;
+    updateUserService(
+      id,
+      username,
+      firstname,
+      lastname,
+      phonenumber,
+      email,
+      password
+    );
+    res.status(201).json({
+      message: "the user update successfully in database",
+    });
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+export { getUserByIdController, createUserController, updateUserController };

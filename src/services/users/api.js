@@ -1,4 +1,8 @@
-import { createUser, getUserById } from "../../models/users/index.js";
+import {
+  createUser,
+  getUserById,
+  updateUser,
+} from "../../models/users/index.js";
 
 function getUserByIdService(id) {
   const user = getUserById(id);
@@ -23,4 +27,16 @@ function createUserService(
   );
   return user;
 }
-export { getUserByIdService, createUserService };
+
+function updateUserService(
+  id,
+  username,
+  firstname,
+  lastname,
+  phonenumber,
+  email,
+  password
+) {
+  updateUser(id, username, firstname, lastname, phonenumber, email, password);
+}
+export { getUserByIdService, createUserService, updateUserService };
