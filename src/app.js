@@ -5,8 +5,9 @@ import logReqData from "./core/middlewares/logReqData.js";
 
 const app = express();
 app.use(express.json());
+app.use(logReqData);
 const serverPort = 3000;
-app.get("/test", logReqData, (req, res) => {
+app.get("/test", (req, res) => {
   res.json({
     message: "express js app is running",
   });
